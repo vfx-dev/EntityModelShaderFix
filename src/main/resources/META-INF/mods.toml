@@ -1,0 +1,45 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "GNU Lesser General Public License v3.0"
+issueTrackerURL = "https://github.com/vfx-dev/EntityModelShaderFix/issues"
+
+[[mods]]
+modId = "entitymodelshaderfix"
+version = "${version}"
+displayName = "EntityModelShaderFix"
+displayURL = "https://github.com/vfx-dev/EntityModelShaderFix"
+#logoFile = "logo.png" TODO: Logo!
+credits = "Traben-0 for writing the fix (but only for regular Iris), Sol for crying about it..."
+authors = "Ven"
+description = '''
+Occulus ETM+EMF Fixes
+Cats get to keep their eyes and whiskers
+'''
+
+[[dependencies.entitymodelshaderfix]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.entitymodelshaderfix]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1]"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.entitymodelshaderfix]]
+modId = "entity_texture_features"
+mandatory = false
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.entitymodelshaderfix]]
+modId = "oculus"
+mandatory = false
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"

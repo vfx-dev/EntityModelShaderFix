@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_16",
+  "package": "com.ventooth.entitymodelshaderfix.mixin.mixins",
+  "plugin": "com.ventooth.entitymodelshaderfix.mixin.MixinPlugin",
+  "client": [
+    "MixinFullyBufferedMultiBufferSource",
+    "MixinInnerWrappedRenderType",
+    "MixinOuterWrappedRenderType"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "entitymodelshaderfix.refmap.json"
+}
