@@ -7,12 +7,13 @@ plugins {
 }
 
 group = "com.ventooth"
-version = "1.0.0"
 
 val mod_modid = "entitymodelshaderfix"
 val mod_name = "entitymodelshaderfix"
-val mod_version = "$version"
+val mod_version = "1.0.0"
 val mod_rootPkg = "$group.$mod_modid"
+
+version = "${mod_version}+mc1.20.1"
 
 base {
     archivesName = "${mod_modid}-forge"
@@ -88,7 +89,6 @@ configure<MixinExtension> {
 }
 
 tasks.jar {
-    version = "${mod_version}+mc1.20.1"
     manifest {
         attributes("MixinConfigs" to "$mod_modid.mixins.json")
     }
@@ -97,8 +97,8 @@ tasks.jar {
 }
 
 tasks.processResources {
-    inputs.property("version", project.version)
+    inputs.property("version", mod_version)
     filesMatching("META-INF/mods.toml") {
-        expand("version" to project.version)
+        expand("version" to mod_version)
     }
 }
