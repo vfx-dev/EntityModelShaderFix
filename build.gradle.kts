@@ -6,19 +6,16 @@ plugins {
     id("org.spongepowered.mixin") version "0.7-SNAPSHOT"
 }
 
-val minecraft_version: String by project
-val forge_version: String by project
-
-val entityTextureFeatures_version: String by project
-val entityModelFeatures_version: String by project
-
-val embeddium_version: String by project
-val oculus_version: String by project
-
+group = "com.ventooth"
 version = "1.0.0"
 
+val mod_modid = "entitymodelshaderfix"
+val mod_name = "entitymodelshaderfix"
+val mod_version = "$version"
+val mod_rootPkg = "$group.$mod_modid"
+
 base {
-    archivesName = "entitymodelshaderfix-forge-1.20.1"
+    archivesName = "${mod_modid}-forge"
 }
 
 java {
@@ -46,7 +43,7 @@ repositories {
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    minecraft("net.minecraftforge:forge:1.20.1-47.4.0")
 
     compileOnly("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
@@ -58,39 +55,42 @@ dependencies {
     })
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
-    implementation(fg.deobf("maven.modrinth:entitytexturefeatures:${entityTextureFeatures_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:entity-model-features:${entityModelFeatures_version}"))
+    implementation(fg.deobf("maven.modrinth:${"entitytexturefeatures:7.0.2"}"))
+    runtimeOnly(fg.deobf("maven.modrinth:${"entity-model-features:3.0.1"}"))
 
-    runtimeOnly(fg.deobf("maven.modrinth:embeddium:${embeddium_version}"))
-    implementation(fg.deobf("maven.modrinth:oculus:${oculus_version}"))
+    runtimeOnly(fg.deobf("maven.modrinth:${"embeddium:0.3.31+mc1.20.1"}"))
+    implementation(fg.deobf("maven.modrinth:${"oculus:1.20.1-1.8.0"}"))
 }
 
 minecraft {
     mappings("official", "1.20.1")
     copyIdeResources = true
     runs {
-        create("client"){
-            properties(mapOf(
-                "forge.logging.console.level" to "debug",
+        create("client") {
+            properties(
+                mapOf(
+                    "forge.logging.console.level" to "debug",
 
-                // Needed so mixins get deobfuscated
-                "mixin.env.remapRefMap" to "true",
-                "mixin.env.refMapRemappingFile" to "$projectDir/build/createSrgToMcp/output.srg",
-            ))
+                    // Needed so mixins get deobfuscated
+                    "mixin.env.remapRefMap" to "true",
+                    "mixin.env.refMapRemappingFile" to "$projectDir/build/createSrgToMcp/output.srg",
+                )
+            )
 
-            arg("-mixin.config=entitymodelshaderfix.mixins.json")
+            arg("-mixin.config=$mod_modid.mixins.json")
             workingDirectory = project.file("run").canonicalPath
             source(sourceSets.main.get())
         }
     }
 }
 configure<MixinExtension> {
-    add(sourceSets.main.get(), "entitymodelshaderfix.refmap.json")
+    add(sourceSets.main.get(), "$mod_modid.refmap.json")
 }
 
 tasks.jar {
+    version = "${mod_version}+mc1.20.1"
     manifest {
-        attributes("MixinConfigs" to "entitymodelshaderfix.mixins.json")
+        attributes("MixinConfigs" to "$mod_modid.mixins.json")
     }
 
     finalizedBy("reobfJar")
