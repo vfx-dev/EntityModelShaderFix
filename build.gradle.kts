@@ -10,7 +10,7 @@ group = "com.ventooth"
 
 val mod_modid = "entitymodelshaderfix"
 val mod_name = "entitymodelshaderfix"
-val mod_version = "1.0.0"
+val mod_version = "1.1.0"
 val mod_rootPkg = "$group.$mod_modid"
 
 version = "${mod_version}+mc1.20.1"
