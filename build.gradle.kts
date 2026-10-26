@@ -56,8 +56,8 @@ dependencies {
     })
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
-    implementation(fg.deobf("maven.modrinth:${"entitytexturefeatures:7.1-forge-1.20.1"}"))
-    runtimeOnly(fg.deobf("maven.modrinth:${"entity-model-features:3.2.4-forge-1.20.1"}"))
+    implementation(fg.deobf("maven.modrinth:${"entitytexturefeatures:7.2.6-forge-1.20.1"}"))
+    runtimeOnly(fg.deobf("maven.modrinth:${"entity-model-features:3.3.12-forge-1.20.1"}"))
 
     runtimeOnly(fg.deobf("maven.modrinth:${"embeddium:0.3.31+mc1.20.1"}"))
     implementation(fg.deobf("maven.modrinth:${"oculus:1.20.1-1.8.0"}"))
